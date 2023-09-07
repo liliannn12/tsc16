@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+
+    <a class="navbar-brand" href="#">TSC 16</a>
+
+    <button 
+    class="navbar-toggler shadow-none border-0" 
+    type="button" 
+    data-bs-toggle="offcanvas" 
+    data-bs-target="#offcanvasNavbar" 
+    aria-controls="offcanvasNavbar" 
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="offcanvas offcanvas-start" 
+    tabindex="-1" 
+    id="offcanvasNavbar" 
+    aria-labelledby="offcanvasNavbarLabel">
+
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TSC 16</h5>
+        <button 
+        type="button" 
+        class="btn-close shadow-none" 
+        data-bs-dismiss="offcanvas" 
+        aria-label="Close">
+        </button>
+      </div>
+
+      <div class="offcanvas-body d-flex flex-column flex-lg-row p-4">
+        <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path('main') }}">Acceuil</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Qui sommes nous ?</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Nos spécialités</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Photos</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+          </li> 
+        </ul>
+
+        {% if app.user %}
+          <div class="d-flex justify-content-center align-items-center">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="{{ path('admin_index') }}">Administration</a>
+            </li>
+            <a href="{{ path('app_logout') }}" class="btn btn-primary">Me déconnecter</a>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>

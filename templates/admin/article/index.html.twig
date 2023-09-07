@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include "_partials/adminnav.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des articles</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Contenu</th>
+                            <th>Catégorie</th>
+                            <th>Slug</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for articles in article %}
+                            <tr>
+                                <td>{{ articles.id }}</td>
+                                <td>{{ articles.title }}</td>
+                                <td>{{ articles.content }}</td>
+                                <td>{{ articles.category.name }}</td>
+                                <td>{{ articles.slug }}</td>
+                                <td>
+                                    <a href="{{ path('admin_article_edit', {id: articles.id})}}" class="btn btn-success">Modifier l'article</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

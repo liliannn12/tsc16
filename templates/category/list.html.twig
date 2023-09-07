@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<main class="container">
+    <section class="row">
+        <div class="col-12">
+            <h1>Voici les articles de la catégorie {{ categorie.name }} </h1>
+        </div>
+        {% for article in articles %}
+            <div class="col-3">
+                <article class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ article.title }}</h2>
+                        <p class="card-text">{{ article.content }}</p>
+                        
+                    </div>
+                </article>
+            </div> 
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}
