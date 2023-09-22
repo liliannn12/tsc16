@@ -1,0 +1,54 @@
+.navbar{
+    background-color: #333333;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.btn-deco{
+    background-color: #DAAB3A;
+    color: white;
+}
+
+.btn-deco:hover{
+    background-color: #DAAB3A;
+    color: white;
+}
+
+.container-pres{
+    background-color: #707070;
+    border: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+footer{
+    background-color: #333333;
+    font-family: 'Bebas Neue', sans-serif;
+    min-width: 100vh;
+}
+
+.container-custom {
+    border: 10px solid #DAAB3A;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.spe{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn-articles{
+    background-color: #DAAB3A;
+    color: white;
+}
+
+.mail{
+    text-decoration: none; 
+    color: inherit
+}
+
+.contact{
+    background-color: #707070;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn-contact{
+    background-color: #DAAB3A;
+}

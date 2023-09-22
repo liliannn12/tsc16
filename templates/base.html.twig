@@ -8,14 +8,18 @@
 
 
 
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+        <script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
+        
+		<script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
 		{% block javascripts %}{% endblock %}
-		<script src="{{ asset('assets/js/scripts.js') }}" defer></script>
+		<script src="{{ asset('js/script.js') }}" defer></script>
 	</head>
 	<body>
         {% include "_partials/_nav.html.twig"%}
@@ -23,4 +27,30 @@
         {% block body %}{% endblock %}
 
         {% include "_partials/_footer.html.twig" %}
+
+        <script>
+        // Initialize CKEditor on the textarea with id 'form_description'
+        CKEDITOR.replace('form_description', {
+            language: 'en',
+            uiColor: '#9AB8F3',
+            removeButtons: 'Cut,Copy,Paste,Undo,Redo,Anchor,Save,Source,Preview,Print,Templates,Find,Replace,Form,Checkbox,Radio Button',
+            toolbar: [
+                { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                '/',
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                '/',
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                { name: 'others', items: ['-'] },
+                { name: 'about', items: ['About'] }
+            ]
+        });
+    </script>
 </html>

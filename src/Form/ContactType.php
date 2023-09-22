@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,8 +17,14 @@ class ContactType extends AbstractType
             ->add('nom')
             ->add('email')
             ->add('sujet')
-            ->add('message', TextareaType::class)
-            ->add('envoyer', SubmitType::class)
+            ->add('message', TextareaType::class,[
+            'attr' => ['id' => 'form_description']
+            ])
+            ->add('envoyer', SubmitType::class, [
+                'attr' =>[
+                    'class' => "btn btn-contact text-white border border-2 my-3 fs-4"
+                ]
+            ])
         ;
     }
 

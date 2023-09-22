@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes nous ?{% endblock %}
+
+{% block body %}
+<div class="container border my-5">
+            {% for article in presentationArticles %}
+                    <h1 class="text-center my-5">{{ article.title }}</h1>
+                    <hr>
+                    <p class="fs-5">{{ article.content }}</p>
+            {% endfor %}
+    </div>
+{% endblock %}

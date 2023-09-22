@@ -4,11 +4,12 @@ namespace App\Form;
 
 
 use App\Entity\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CategoryFormType extends AbstractType
 {
@@ -16,8 +17,7 @@ class CategoryFormType extends AbstractType
     {
         $builder
             ->add('name', options:['label' => 'Nom de la catégorie'])
-            ->add('img', options:['label' => 'Image'])
-            ->add('slug');
+            ->add('content', options:['label' => 'Contenu']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

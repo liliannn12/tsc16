@@ -4,12 +4,15 @@
 
 {% block body %}
 
-<h1 class="text-center my-5">Contactez nous !</h1>
+<div class="container contact rounded text-white my-5 text-center">
+        <h1 class="text-center py-5">Contactez nous !</h1>
 
-<p class="text-center">Contactez-moi pour toutes demandes d'informations et de devis relatives à nos services de travaux sur cordes, tuyauterie, soudure, chaudronnerie, métallerie-serrurerie et formation dans tous ces domaines.</p>
+        <p class="text-center fs-5">Contactez-moi pour toutes demandes d'informations et de devis relatives à nos services de travaux sur cordes, tuyauterie, soudure, chaudronnerie, métallerie-serrurerie et formation dans tous ces domaines.</p>
 
-<div class="container">
-        {{ form(formulaire) }}
+        <div class="container">
+                {{ form(formulaire) }}
+        </div>
+
 </div>
 
 {% endblock %}

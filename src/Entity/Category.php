@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+
+use App\Entity\Article;
+use Doctrine\DBAL\Types\Types;
 use App\Entity\Trait\SlugTrait;
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryRepository;
+use Symfony\Component\Validator\Constraints\Collection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -21,16 +23,12 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
+
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Article::class)]
-    private Collection $articles;
+    private $articles;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $img = null;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -49,10 +47,21 @@ class Category
         return $this;
     }
 
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content)
+    {
+        $this->content = $content;
+        return $this;
+    }
+
     /**
      * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticles(): Article
     {
         return $this->articles;
     }
@@ -75,18 +84,6 @@ class Category
                 $article->setCategory(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getImg(): ?string
-    {
-        return $this->img;
-    }
-
-    public function setImg(?string $img): static
-    {
-        $this->img = $img;
 
         return $this;
     }

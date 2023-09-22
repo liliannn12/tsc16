@@ -20,6 +20,22 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
+    /**
+     * Récupère tous les articles appartenant à une catégorie donnée.
+     *
+     * @param string $categoryName Le nom de la catégorie.
+     * @return Article[] Un tableau d'articles de la catégorie donnée.
+     */
+    
+    public function findByCategoryName(string $categoryName): array
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.category', 'c')
+            ->andWhere('c.name = :categoryName')
+            ->setParameter('categoryName', $categoryName)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Article[] Returns an array of Article objects

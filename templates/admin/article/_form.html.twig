@@ -1,6 +1,9 @@
 {{ form_start(articleForm) }}
+
     {{ form_row(articleForm.title) }}
     {{ form_row(articleForm.category) }}
     {{ form_row(articleForm.content) }}
-    <button type="submit" class="btn btn-primary my-3">{{ button_label|default('Ajouter') }}</button>
+    {{ form_row(articleForm.user)}}
+
+    <button type="submit" class="btn btn-primary mb-5 mt-3">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(articleForm) }}

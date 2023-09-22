@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos spécialités{% endblock %}
+
+{% block body %}
+<div class="container spe text-center">
+    <h1 class="text-center my-5">Nos spécialités</h1>
+       {% for categories in category %}
+            <h2 class="py-3">{{ categories.name|capitalize }}</h2>
+            <p>{{ categories.content}}</p>
+            {% if categories.id is defined %}
+                <a href="{{ path('app_articles', {'categoryId': categories.id}) }}" class="btn btn-articles border-0 my-3 fs-5">Voir les articles</a>
+            {% else %}
+            <p>Il n'y a pas encore d'article !</p>
+            {% endif %}
+            <hr>
+    {% endfor %}
+    </div>
+{% endblock %}

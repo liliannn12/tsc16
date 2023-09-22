@@ -1,4 +1,4 @@
-<aside class="col-3 border border-light bg-white p-2">
+<aside class="col-3 border border-light bg-white">
     <article class="card mb-3">
         <div class="card-header">
             <h4>Catégories<h4>
@@ -10,7 +10,7 @@
     </article>
     <article class="card mb-3">
         <div class="card-header">
-            <h4>Produits</h4>
+            <h4>Articles</h4>
         </div>
         <div class="card-body">
             <p><a href="{{ path('admin_article_index') }}">Liste des articles</a></p>
@@ -22,7 +22,7 @@
             <h4>Mes informations</h4>
         </div>
         <div class="card-body">
-            <p><a href="#">Modifier mes informations</a></p>
+            <p><a href="{{ path('app_forgot_password_request') }}">Modifier mon mot de passe</a></p>
         </div>
     </article>
 </aside>

@@ -3,11 +3,11 @@
 {% block title %}Liste des articles{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid my-5">
         <div class="row">
             {% include "_partials/adminnav.html.twig" %}
             <main class="col-9 border border-light bg-white p-2">
-                <h1>Liste des articles</h1>
+                <h1 class="mb-3">Liste des articles</h1>
                 <table class="table">
                     <thead>
                         <tr>
@@ -15,8 +15,9 @@
                             <th>Titre</th>
                             <th>Contenu</th>
                             <th>Catégorie</th>
+                            <th>Auteur</th>
                             <th>Slug</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,9 +27,11 @@
                                 <td>{{ articles.title }}</td>
                                 <td>{{ articles.content }}</td>
                                 <td>{{ articles.category.name }}</td>
+                                <td>{{ articles.user.lastname }}</td>
                                 <td>{{ articles.slug }}</td>
                                 <td>
-                                    <a href="{{ path('admin_article_edit', {id: articles.id})}}" class="btn btn-success">Modifier l'article</a>
+                                    <a href="{{ path('admin_article_edit', {id: articles.id}) }}" class="btn btn-success">Modifier</a>
+                                    <a href="{{ path('admin_article_delete', {id: articles.id}) }}" class="btn btn-danger mt-3">Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}

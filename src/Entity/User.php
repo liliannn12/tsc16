@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Cast\Bool_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,9 +47,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
-
-    #[ORM\Column(type: 'string', length: 100)]
-    private $resetToken;
 
     #[ORM\Column(type: 'datetime_immutable', options:['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
@@ -196,18 +194,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): static
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    public function getResetToken(): ?string
-    {
-        return $this->resetToken;
-    }
-    
-    public function setResetToken(?string $resetToken): self
-    {
-        $this->resetToken = $resetToken;
 
         return $this;
     }

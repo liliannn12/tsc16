@@ -23,6 +23,18 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $userRepository = $entityManager->getRepository(User::class);
+            $totalUsers = $userRepository->count([]);
+
+            if ($totalUsers === 0) {
+                // C'est le premier utilisateur, attribuez-lui le rôle d'administrateur
+                $user->setRoles(['ROLE_ADMIN']);
+            } else {
+                // Ce ne sont pas le premier utilisateur, attribuez-lui le rôle d'utilisateur standard
+                $user->setRoles(['ROLE_USER']);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

@@ -51,7 +51,7 @@ class ArticleController extends AbstractController{
     #[Route('/edition/{id}', name:'edit')]
     public function edit(Article $article, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
-        $articleForm = $this->createForm(ArticleFormTypes::class, $article);
+        $articleForm = $this->createForm(ArticleFormType::class, $article);
 
         $articleForm->handleRequest($request);
 

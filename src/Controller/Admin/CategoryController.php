@@ -51,7 +51,7 @@ class CategoryController extends AbstractController
     #[Route('/edition/{id}', name: 'edit')]
     public function edit(Category $category, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
-
+        
         $categoryForm = $this->createForm(CategoryFormType::class, $category);
 
         $categoryForm->handleRequest($request);
@@ -60,6 +60,7 @@ class CategoryController extends AbstractController
             
             $slug = $slugger->slug($category->getName());
             $category->setSlug($slug);
+            $category->setName($categoryForm->get('name')->getData());
 
             $em->persist($category);
             $em->flush();
@@ -73,7 +74,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name:'delete')]
-    public function delete(Category $category, Request $request, EntityManager $em): Response
+    public function delete(Category $category, Request $request, EntityManagerInterface $em): Response
     {
         $em->remove($category);
         $em->flush();

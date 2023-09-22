@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\SlugTrait;
-use App\Repository\ArticleRepository;
+
+use App\Entity\Category;
+use New\DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -19,25 +22,27 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'Le titre de l\'article ne peut pas être vide.')]
+    #[Assert\NotBlank(message: 'Le titre de l\'article ne peut pas être vide.')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message:'Le contenu de l\'article ne peut pas être vide.')]
+    #[Assert\NotBlank(message: 'Le contenu de l\'article ne peut pas être vide.')]
     private ?string $content = null;
 
-    #[ORM\Column(type: 'datetime_immutable', options:['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private $created_at = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $img = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?Category $category = null;
+    #[ORM\ManyToOne(inversedBy: 'articles', targetEntity:Category::class)]
+    private $category;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -76,18 +81,6 @@ class Article
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getImg(): ?string
-    {
-        return $this->img;
-    }
-
-    public function setImg(?string $img): static
-    {
-        $this->img = $img;
 
         return $this;
     }
